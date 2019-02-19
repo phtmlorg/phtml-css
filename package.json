@@ -1,0 +1,56 @@
+{
+  "name": "@phtml/css",
+  "version": "1.0.0",
+  "description": "Transform inline CSS in HTML",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "phtmlorg/phtml-css",
+  "homepage": "https://github.com/phtmlorg/phtml-css#readme",
+  "bugs": "https://github.com/phtmlorg/phtml-css/issues",
+  "main": "index.js",
+  "module": "index.mjs",
+  "files": [
+    "index.js",
+    "index.js.map",
+    "index.mjs",
+    "index.mjs.map"
+  ],
+  "scripts": {
+    "build": "rollup --config .rollup.js --silent",
+    "prepublishOnly": "npm test",
+    "pretest": "npm run build",
+    "test": "npm run test:js && npm run test:tape",
+    "test:js": "eslint src/*.js --cache --ignore-path .gitignore --quiet",
+    "test:tape": "phtml-tape"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "phtml": "^2.0.1",
+    "postcss": "^7.0.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.14.1",
+    "eslint-config-dev": "^2.0.0",
+    "phtml-tape": "^2.0.0",
+    "postcss-preset-env": "^6.5.0",
+    "pre-commit": "^1.2.2",
+    "rollup": "^1.2.2",
+    "rollup-plugin-babel": "^4.3.2"
+  },
+  "eslintConfig": {
+    "extends": "dev",
+    "parser": "babel-eslint"
+  },
+  "keywords": [
+    "phtml",
+    "html",
+    "phtml-plugin",
+    "css",
+    "postcss"
+  ]
+}
