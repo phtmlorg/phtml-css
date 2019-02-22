@@ -25,10 +25,6 @@ export default new phtml.Plugin('phtml-css', opts => {
 			}
 
 			if (isStyleElement(element)) {
-				if (!element.nodes.length) {
-					element.nodes.append('');
-				}
-
 				const target = element.nodes[0];
 				const source = target.data;
 
@@ -69,9 +65,9 @@ export default new phtml.Plugin('phtml-css', opts => {
 });
 
 function isStyleElement(node) {
-	return /^style$/.test(node.name) && node.nodes.length <= 1;
+	return /^style$/.test(node.name) && node.nodes.length === 1;
 }
 
 function hasStyleAttribute(node) {
-	return node.attrs.contains('style');
+	return node.attrs.get('style');
 }
