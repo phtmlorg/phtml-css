@@ -27,7 +27,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "phtml": "^2.0.1",
+    "phtml": "^2.0.2",
     "postcss": "^7.0.14"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "phtml-tape": "^2.0.0",
     "postcss-preset-env": "^6.5.0",
     "pre-commit": "^1.2.2",
-    "rollup": "^1.2.2",
+    "rollup": "^1.2.3",
     "rollup-plugin-babel": "^4.3.2"
   },
   "eslintConfig": {
