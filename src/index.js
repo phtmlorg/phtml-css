@@ -10,37 +10,41 @@ export default new phtml.Plugin('phtml-css', opts => {
 	});
 
 	const processor = postcss(plugins);
-	const map = new WeakMap();
 
 	return {
-		Element(element, result) {
-			const promises = map.get(result) || map.set(result, []).get(result);
+		Element (element) {
+			let promise;
 
 			if (hasStyleAttribute(element)) {
 				const source = element.attrs.get('style');
 
-				promises.push(processStyle(source, element, true).then(css => {
-					element.attrs.add('style', css);
-				}));
+				promise = (promise || Promise.resolve()).then(
+					() => processStyle(source, element, true)
+				).then(
+					css => {
+						element.attrs.add('style', css);
+					}
+				);
 			}
 
 			if (isStyleElement(element)) {
 				const target = element.nodes[0];
 				const source = target.data;
 
-				promises.push(processStyle(source, element).then(css => {
-					target.data = css;
-				}));
+				promise = (promise || Promise.resolve()).then(
+					() => processStyle(source, element)
+				).then(
+					css => {
+						target.data = css;
+					}
+				);
 			}
-		},
-		Root(root, result) {
-			const promises = map.get(result) || map.set(result, []).get(result);
 
-			return Promise.all(promises);
+			return promise;
 		}
 	};
 
-	function processStyle(source, node, isInline) {
+	function processStyle (source, node, isInline) {
 		const processOptions = Object.assign({
 			from: node.source.input.from
 		}, adjustedProcessOptions);
@@ -64,10 +68,10 @@ export default new phtml.Plugin('phtml-css', opts => {
 	}
 });
 
-function isStyleElement(node) {
+function isStyleElement (node) {
 	return /^style$/.test(node.name) && node.nodes.length === 1;
 }
 
-function hasStyleAttribute(node) {
+function hasStyleAttribute (node) {
 	return node.attrs.get('style');
 }
