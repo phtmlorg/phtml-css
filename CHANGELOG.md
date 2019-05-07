@@ -1,5 +1,11 @@
 # Changes to pHTML CSS
 
+### 3.0.0 (May 6, 2019)
+
+- Updated: `phtml` to 4.0.0 (major)
+- Updated: `postcss` to 7.0.16 (patch)
+- Updated: Node 8+ compatibility (major)
+
 ### 2.0.0 (March 16, 2019)
 
 - Updated: `phtml` to 3.0.0 (major)
