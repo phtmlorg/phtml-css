@@ -31,4 +31,4 @@ export default function offsetLines (incomingSourceMap, lineOffset) {
 	}
 
 	return outgoingSourceMap;
-};
+}
